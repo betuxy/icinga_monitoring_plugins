@@ -1,0 +1,21 @@
+object CheckCommand "docker_deployment" {
+    import "plugin-check-command"
+    command = [ PluginDir + "/check_docker_deployment" ]
+
+    arguments = {
+        "-p" = {
+            value = "$docker_deployment_prefix$"
+            description = "Name prefix of a docker deployment to check."
+        }
+        "-n" = {
+            value = "$docker_deployment_containers$"
+            repeat_key = true
+            description = "Container names to add to deployment."
+        }
+        "-x" = {
+            value = "$docker_deployment_excludes$"
+            repeat_key = true
+            description = "Container names to exclude from check."
+        }
+    }
+}

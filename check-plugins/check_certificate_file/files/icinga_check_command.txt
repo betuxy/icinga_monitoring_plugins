@@ -1,0 +1,20 @@
+object CheckCommand "check_cert_file" {
+    import "plugin-check-command"
+    command = [ PluginDir + "/check_certificate_file" ]
+
+    arguments = {
+        "-p" = {
+            value = "$cert_file$"
+            required = true
+        }
+        "-w" = {
+            value = "$cert_file_warning$"
+        }
+        "-c" = {
+            value = "$cert_file_critical$"
+        }
+    }
+
+    vars.cert_file_warning = 21
+    vars.cert_file_critical = 14
+}
